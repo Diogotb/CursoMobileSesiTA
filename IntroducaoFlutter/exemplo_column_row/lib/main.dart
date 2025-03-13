@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
                   Positioned(
                     top: 20,
                     right: 20,
-                    child: Icon(Icons.) )
+                    child: Icon(Icons.star) )
                 ],
               )
             ],
