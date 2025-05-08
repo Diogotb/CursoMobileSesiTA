@@ -8,13 +8,15 @@ void main(){
 }
 
 class ListaTarefas extends StatefulWidget{
+  const ListaTarefas({super.key});
+
   @override
   _ListaTarefasState createState() => _ListaTarefasState();
 }
 
 class _ListaTarefasState extends State<ListaTarefas>{
   final TextEditingController _tarefaController = TextEditingController();
-  List<Map<String,dynamic>> _tarefas =[];
+  final List<Map<String,dynamic>> _tarefas =[];
 
   void _adicionarTarefas(){
     if(_tarefaController.text.trim().isNotEmpty){

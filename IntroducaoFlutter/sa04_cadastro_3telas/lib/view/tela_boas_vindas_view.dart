@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TelaBoasVindas extends StatelessWidget{
+  const TelaBoasVindas({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

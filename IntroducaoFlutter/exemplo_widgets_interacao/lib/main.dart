@@ -5,7 +5,10 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   // chama as modificação de contrução
+  @override
   _MyAppState createState() => _MyAppState();
 }
 
@@ -25,6 +28,7 @@ class _MyAppState extends State<MyApp> {
   bool _aceite = false;
 
   //métodos
+  @override
   Widget build(BuildContext context) {
     //construtor de Widgets
     return Scaffold(

@@ -8,7 +8,9 @@ void main(){ // método necessário para rodar a aplicação
   MyApp();
 }
 
-class MyApp extends StatelessWidget { //classe inicial 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+ //classe inicial 
   @override
   Widget build(BuildContext context) {
     return MaterialApp( // material app - material basse de desenvolvimento
