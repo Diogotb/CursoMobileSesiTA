@@ -11,10 +11,11 @@ class NotaDBhelper {
 
   static const String DB_NAME = "notas.db";
   static const String TABLE_NAME = "notas";
-  static const String CREATE_TABLE_SQL = """CREATE TABLE IF NOT EXISTS $TABLE_NAME(
-                                            id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                                            titulo TEXT NOT NULL, 
-                                            conteudo TEXT NOT NULL)""";
+  static const String CREATE_TABLE_SQL = 
+  """CREATE TABLE IF NOT EXISTS $TABLE_NAME(
+      id INTEGER PRIMARY KEY AUTOINCREMENT, 
+      titulo TEXT NOT NULL, 
+      conteudo TEXT NOT NULL)""";
   
   //métodos
   //iniciar conexãao
