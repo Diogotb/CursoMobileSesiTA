@@ -79,13 +79,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void _deletePet(int id) async {
     try {
       await _controllerPet.deletePet(id);
-      await _controllerPet.readPets();
+      _carregarDados();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Pet Deletado com Sucesso"))
       );
-      setState(() {
-        
-      });
+      
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Exception: $e"))

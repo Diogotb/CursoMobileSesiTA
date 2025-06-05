@@ -99,7 +99,10 @@ class _DetalhePetScreenState extends State<DetalhePetScreen>{
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: ()=> Navigator.push(context, 
-          MaterialPageRoute(builder: (context)=>AgendaConsultaScreen(petId: widget.petId)))),
+          MaterialPageRoute(builder: (context)=>
+            AgendaConsultaScreen(petId: widget.petId))),
+        child: Icon(Icons.add),
+            ),
     );
   }
   
@@ -108,14 +111,11 @@ class _DetalhePetScreenState extends State<DetalhePetScreen>{
       // deletar consulta
       await _consultaController.deleteConsulta(consultaId);
       // recarreegar a lista de consulta
-      await _consultaController.readConsultaForPet(widget.petId);
+      _carregarDados();
       // mensagem para o usuario
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Consulta Deletada com Sucesso"))
       );
-      setState(() {
-        
-      });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Exception: $e"))
