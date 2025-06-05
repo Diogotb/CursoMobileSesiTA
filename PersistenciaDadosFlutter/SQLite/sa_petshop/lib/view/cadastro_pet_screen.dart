@@ -18,13 +18,13 @@ class _CadastroPetScreenState extends State<CadastroPetScreen> {
   final _controllerPet = PetController();
 
   // atributos do obj
-  late String _nome;
-  late String _raca;
-  late String _nomeDono;
-  late String _telefoneDono;
+  String _nome = "";
+  String _raca = "";
+  String _nomeDono = "";
+  String _telefoneDono = "";
 
   //Cadastrar o Pet (salvar no BD) 
-  _salvarPet() async{
+  Future<void> _salvarPet() async{
     if(_formKey.currentState!.validate()){
       _formKey.currentState!.save();
       final newPet = Pet(

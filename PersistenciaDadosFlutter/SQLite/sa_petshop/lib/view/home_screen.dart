@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sa_petshop/controllers/pet_controller.dart';
 import 'package:sa_petshop/view/cadastro_pet_screen.dart';
+import 'package:sa_petshop/view/detalhe_pet_screen.dart';
 
 import '../models/pet_model.dart';
 
@@ -28,14 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void _carregarDados() async {
     setState(() {
       _isLoading = true;
+      _pets = [];
     });
-    _pets = [];
     try {
       _pets = await _controllerPet.readPets();
     } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Erro ao Carregar os Dados $e")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Erro ao Carregar os Dados $e")));
     } finally { //execução obrigatória independente  do resultado
       setState(() {
         _isLoading = false;
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(title: Text("Meus Pets - Cliente"),),
-      body: _isLoading
+      body: _isLoading //operador ternário
         ? Center(child: CircularProgressIndicator(),)
         : Padding(
           padding: EdgeInsets.all(16),
@@ -59,9 +59,11 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (context,index){
               final pet = _pets[index];
               return ListTile(
-                title: Text("${pet.nome} - ${pet.raca}"),
+                title: Text("${pet.id!} - ${pet.nome} - ${pet.raca}"),
                 subtitle: Text("${pet.nomeDono} - ${pet.telefoneDono}"),
-                //onTap: () => , //página de detalhes do PET
+                onTap: () => Navigator.push(context, 
+                  MaterialPageRoute(builder: (context)=>DetalhePetScreen(petId: pet.id!))), //página de detalhes do PET
+                onLongPress: () => _deletePet(pet.id!),
               );
             }),
           ),
@@ -72,5 +74,23 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Icon(Icons.add),
         ),
     );
+  }
+  
+  void _deletePet(int id) async {
+    try {
+      await _controllerPet.deletePet(id);
+      await _controllerPet.readPets();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Pet Deletado com Sucesso"))
+      );
+      setState(() {
+        
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Exception: $e"))
+      );
+      
+    }
   }
 }
