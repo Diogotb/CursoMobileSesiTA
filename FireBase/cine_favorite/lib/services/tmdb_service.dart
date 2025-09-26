@@ -9,9 +9,9 @@ class TmdbService {
   static const String _apiKey = "1fa5c2d59029fd1c438cc35713720604";
   static const String _baseURL = "https://api.themoviedb.org/3";
   static const String _idioma = "pt-BR";
-
-  //método para buscar filme com base no texto
-
+  //static -> atributos da classe e não do OBJ
+  
+  //método para buscar filme com base no texto (static) -> método que será executado pela Classe e não pelo OBJ
   static Future<List<Map<String,dynamic>>> searchMovies(String query) async{
     //converter String em URL
     final apiUrl = Uri.parse("$_baseURL/search/movie?api_key=$_apiKey&query=$query&language=$_idioma");
